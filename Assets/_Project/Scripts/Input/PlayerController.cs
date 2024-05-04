@@ -23,7 +23,9 @@ public class PlayerController : MonoBehaviour
 
   private void HandleMovement()
   {
-    var adjustedMovement = Vector3.right * currentSpeed * Time.deltaTime;
+    var movementDirections = new Vector3(inputReader.Directions.x, 0, inputReader.Directions.z).normalized;
+
+    var adjustedMovement = Vector3.forward * currentSpeed * Time.deltaTime;
     controller.Move(adjustedMovement);
   }
 }
