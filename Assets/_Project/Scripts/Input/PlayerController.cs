@@ -11,14 +11,27 @@ public class PlayerController : MonoBehaviour
   [SerializeField] private InputReader inputReader;
 
   [Header("Settings")]
-  [SerializeField] private float speed = 5;
+  [SerializeField] private float initSpeed = 5;
   [SerializeField] private float smoothTime = 0.1f;
 
   [SerializeField] private float currentSpeed = 5;
 
+  private static readonly int Speed = Animator.StringToHash("Speed");
+
+  private void Awake()
+  {
+    currentSpeed = initSpeed;
+  }
+
   private void Update()
   {
     HandleMovement();
+    UpdadeteAnimator();
+  }
+
+  private void UpdadeteAnimator()
+  {
+    animator.SetFloat(Speed, currentSpeed);
   }
 
   private void HandleMovement()
