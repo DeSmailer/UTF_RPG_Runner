@@ -1,7 +1,5 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 
 public class StateMashine
 {
@@ -71,6 +69,7 @@ public class StateMashine
   {
     GetOrAddNode(from).AddTransition(GetOrAddNode(to).State, condition);
   }
+
   public void AddAnyTransition(IState to, IPredicate condition)
   {
     anyTransitions.Add(new Transition(GetOrAddNode(to).State, condition));
@@ -80,7 +79,7 @@ public class StateMashine
   {
     var node = nodes.GetValueOrDefault(state.GetType());
 
-    if (node != null)
+    if (node == null)
     {
       node = new StateNode(state);
       nodes.Add(state.GetType(), node);

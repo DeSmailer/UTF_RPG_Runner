@@ -14,23 +14,24 @@ public abstract class BaseState : IState
     this.animator = animator;
   }
 
-  public virtual void FixedUpdate()
-  {
-    throw new System.NotImplementedException();
-  }
-
   public virtual void OnEnter()
   {
-    throw new System.NotImplementedException();
-  }
-
-  public virtual void OnExit()
-  {
-    throw new System.NotImplementedException();
+    Debug.Log("FixedUpdate");
   }
 
   public virtual void Update()
   {
-    throw new System.NotImplementedException();
+    Debug.Log("Update");
   }
+
+  public virtual void FixedUpdate()
+  {
+    Debug.Log("FixedUpdate");
+  }
+
+  public virtual void OnExit()
+  {
+    Debug.Log("OnExit");
+  }
+
 }

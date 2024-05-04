@@ -18,19 +18,40 @@ public class PlayerController : MonoBehaviour
   [SerializeField] private float trackChangeDuration = 1f;
   private bool canChangeTrack = true;
 
+  private StateMashine stateMashine;
+
   private static readonly int Speed = Animator.StringToHash("Speed");
 
   public void Initialize()
   {
     currentSpeed = initSpeed;
     transform.position = new Vector3(runningTrack.GetCurrentTrackXCoordinate(), transform.position.y, transform.position.z);
+
+    stateMashine = new StateMashine();
+
+    var locomotionState = new LocomotionState(this, animator);
+    var locomotionTest2State = new LocomotionTest2State(this, animator);
+    //https://youtu.be/NnH6ZK5jt7o?si=-piZRbINZYFou3Mt&t=739
+
+    At(locomotionState, locomotionTest2State, new FuncPredicate(() => canChangeTrack));
+    At(locomotionTest2State, locomotionState, new FuncPredicate(() => canChangeTrack));
+
+    stateMashine.SetState(locomotionState);
   }
+
+  private void At(IState from, IState to, IPredicate condition) => stateMashine.AddTransition(from, to, condition);
+  private void Any(IState to, IPredicate condition) => stateMashine.AddAnyTransition(to, condition);
 
   private void Update()
   {
-    MoveForvard();
-    HandleMovement();
+    stateMashine.Update();
+
     UpdadeteAnimator();
+  }
+
+  private void FixedUpdate()
+  {
+    stateMashine.FixedUpdate();
   }
 
   private void UpdadeteAnimator()
@@ -38,7 +59,7 @@ public class PlayerController : MonoBehaviour
     animator.SetFloat(Speed, currentSpeed);
   }
 
-  private void HandleMovement()
+  public void HandleMovement()
   {
     if (!canChangeTrack)
     {
@@ -57,7 +78,7 @@ public class PlayerController : MonoBehaviour
     }
   }
 
-  private void MoveForvard()
+  public void MoveForvard()
   {
     var adjustedMovement = Vector3.forward * currentSpeed * Time.deltaTime;
     controller.Move(adjustedMovement);
