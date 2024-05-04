@@ -62,4 +62,9 @@ public class PlayerController : MonoBehaviour
     var adjustedMovement = Vector3.forward * currentSpeed * Time.deltaTime;
     controller.Move(adjustedMovement);
   }
+
+  private void OnDestroy()
+  {
+    transform.DOKill();
+  }
 }

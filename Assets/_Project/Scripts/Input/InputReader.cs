@@ -18,6 +18,8 @@ public class InputReader : ScriptableObject, PlayerInputActions.IPlayerActions
       inputActions = new PlayerInputActions();
       inputActions.Player.SetCallbacks(this);
     }
+
+    //inputActions.();
     inputActions.Enable();
   }
 
@@ -33,6 +35,7 @@ public class InputReader : ScriptableObject, PlayerInputActions.IPlayerActions
 
   public void OnMove(InputAction.CallbackContext context)
   {
+    Debug.Log("++");
     Move?.Invoke(context.ReadValue<Vector2>());
   }
 }
