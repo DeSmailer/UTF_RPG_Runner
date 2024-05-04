@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 
@@ -9,6 +6,7 @@ public class PlayerController : MonoBehaviour
   [Header("Refarences")]
   [SerializeField] private CharacterController controller;
   [SerializeField] private Animator animator;
+
   [SerializeField] private InputReader inputReader;
 
   [Header("Settings")]
@@ -22,7 +20,7 @@ public class PlayerController : MonoBehaviour
 
   private static readonly int Speed = Animator.StringToHash("Speed");
 
-  private void Awake()
+  public void Initialize()
   {
     currentSpeed = initSpeed;
     transform.position = new Vector3(runningTrack.GetCurrentTrackXCoordinate(), transform.position.y, transform.position.z);
