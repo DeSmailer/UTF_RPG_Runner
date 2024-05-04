@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 [CreateAssetMenu(fileName = "InputReader", menuName = "ScriptableObjects/InputReader", order = 1)]
 public class InputReader : ScriptableObject, PlayerInputActions.IPlayerActions
 {
-  public event UnityAction<Vector2> Move = delegate { };
+  public event UnityAction<Vector2> Move;
 
   private PlayerInputActions inputActions;
 
@@ -33,6 +33,6 @@ public class InputReader : ScriptableObject, PlayerInputActions.IPlayerActions
 
   public void OnMove(InputAction.CallbackContext context)
   {
-    Move.Invoke(context.ReadValue<Vector2>());
+    Move?.Invoke(context.ReadValue<Vector2>());
   }
 }
