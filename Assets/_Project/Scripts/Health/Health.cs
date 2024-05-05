@@ -27,6 +27,7 @@ public class Health : MonoBehaviour
 
   void Die()
   {
+    ScoreManager.Instance.AddScore(5);
     OnDied?.Invoke();
   }
 
