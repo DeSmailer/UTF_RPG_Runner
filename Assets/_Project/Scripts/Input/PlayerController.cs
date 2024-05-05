@@ -6,6 +6,8 @@ public class PlayerController : MonoBehaviour
   [Header("Refarences")]
   [SerializeField] private CharacterController controller;
   [SerializeField] private Animator animator;
+  [SerializeField] private HealthDetector healthDetector;
+  [SerializeField] private Health health;
 
   [SerializeField] private InputReader inputReader;
 
@@ -18,6 +20,11 @@ public class PlayerController : MonoBehaviour
   [SerializeField] private float trackChangeDuration = 1f;
   private bool canChangeTrack = true;
 
+  [Header("Attack")]
+  CountdownTimer attackTimer;
+  [SerializeField] private float timerBeetweenAttacks = 1f;
+  [SerializeField] private float damage = 5f;
+
   private StateMashine stateMashine;
 
   private static readonly int Speed = Animator.StringToHash("Speed");
@@ -26,15 +33,16 @@ public class PlayerController : MonoBehaviour
   {
     currentSpeed = initSpeed;
     transform.position = new Vector3(runningTrack.GetCurrentTrackXCoordinate(), transform.position.y, transform.position.z);
+    attackTimer = new CountdownTimer(timerBeetweenAttacks);
+    health.Initialize(10, 10);
 
     stateMashine = new StateMashine();
 
     var locomotionState = new LocomotionState(this, animator);
-    var locomotionTest2State = new LocomotionTest2State(this, animator);
-    //https://youtu.be/NnH6ZK5jt7o?si=-piZRbINZYFou3Mt&t=739
+    var attackState = new AttackState(this, animator, healthDetector.Health);
 
-    At(locomotionState, locomotionTest2State, new FuncPredicate(() => canChangeTrack));
-    At(locomotionTest2State, locomotionState, new FuncPredicate(() => canChangeTrack));
+    Any(locomotionState, new FuncPredicate(() => !healthDetector.Detected));
+    At(locomotionState, attackState, new FuncPredicate(() => healthDetector.Detected));
 
     stateMashine.SetState(locomotionState);
   }
@@ -45,6 +53,7 @@ public class PlayerController : MonoBehaviour
   private void Update()
   {
     stateMashine.Update();
+    attackTimer.Tick(Time.deltaTime);
 
     UpdadeteAnimator();
   }
@@ -82,6 +91,16 @@ public class PlayerController : MonoBehaviour
   {
     var adjustedMovement = Vector3.forward * currentSpeed * Time.deltaTime;
     controller.Move(adjustedMovement);
+  }
+
+  public void Attack()
+  {
+    if (attackTimer.IsRunning)
+    {
+      return;
+    }
+    attackTimer.Start();
+    Debug.Log("Attack");
   }
 
   private void OnDestroy()

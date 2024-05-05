@@ -1,17 +1,17 @@
 ﻿using UnityEngine;
 
-public abstract class BaseState : IState
+public abstract class EnemyBaseState : IState
 {
-  protected readonly PlayerController player;
+  protected readonly Enemy enemy;
   protected readonly Animator animator;
 
-  protected static readonly int LocomotionHash = Animator.StringToHash("Locomotion");
+  protected static readonly int idleHash = Animator.StringToHash("Idle");
   protected static readonly int attackHash = Animator.StringToHash("Attack");
   protected const float crossFadeDuration = 0.1f;
 
-  public BaseState(PlayerController player, Animator animator)
+  protected EnemyBaseState(Enemy enemy, Animator animator)
   {
-    this.player = player;
+    this.enemy = enemy;
     this.animator = animator;
   }
 
@@ -34,5 +34,5 @@ public abstract class BaseState : IState
   {
     Debug.Log("OnExit");
   }
-
 }
+
