@@ -201,8 +201,9 @@ MonoBehaviour:
   controller: {fileID: 6846637536764622852}
   animator: {fileID: 177906313518999455}
   healthDetector: {fileID: 3938524320981599797}
-  health: {fileID: 3776303250530738184}
   inputReader: {fileID: 11400000, guid: fcd91089c29f8164da4784f377a7cf72, type: 2}
+  health: {fileID: 3776303250530738184}
+  maxHp: 20
   initSpeed: 5
   currentSpeed: 5
   runningTrack: {fileID: 0}
@@ -247,8 +248,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30672bfa7a5148a449fc268aaf4987e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 0
-  currentHp: 0
+  OnChange:
+    m_PersistentCalls:
+      m_Calls: []
+  OnDied:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1001 &5986361197131168476
 PrefabInstance:
   m_ObjectHideFlags: 0
