@@ -1,19 +1,37 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Health : MonoBehaviour
 {
-  [SerializeField] private float maxHp;
-  [SerializeField] private float currentHp;
+  public float MaxHp { get; private set; }
+  public float CurrentHp { get; private set; }
 
-  public void Initialize(float maxHp, float currentHp)
+  public UnityEvent OnChange;
+  public UnityEvent OnDied;
+
+  public void Initialize(float maxHp)
   {
-    this.maxHp = maxHp;
-    this.currentHp = currentHp;
+    CurrentHp = MaxHp = maxHp;
   }
 
   public void TakeDamage(float damage)
   {
-    currentHp -= damage;
-    Debug.Log("currentHp " + currentHp);
+    CurrentHp -= damage;
+    if (CurrentHp <= 0)
+    {
+      Die();
+    }
+    OnChange?.Invoke();
+    Debug.Log("currentHp " + CurrentHp);
+  }
+
+  void Die()
+  {
+    OnDied?.Invoke();
+  }
+
+  public float GetHpPercentage()
+  {
+    return CurrentHp / MaxHp;
   }
 }

@@ -3801,7 +3801,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!135 &760803553
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -5409,7 +5409,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!135 &1148039320
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -9876,6 +9876,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 963194228}
   - {fileID: 705507995}
+  - {fileID: 1837689500}
   - {fileID: 2039396535369815560}
   - {fileID: 638605322}
   - {fileID: 1283947672}
@@ -9885,7 +9886,6 @@ SceneRoots:
   - {fileID: 397674115}
   - {fileID: 1148039323}
   - {fileID: 760803556}
-  - {fileID: 1837689500}
   - {fileID: 709192222}
   - {fileID: 148115644}
   - {fileID: 8220769003225717446}

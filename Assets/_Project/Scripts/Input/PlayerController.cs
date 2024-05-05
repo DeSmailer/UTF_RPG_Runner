@@ -7,11 +7,13 @@ public class PlayerController : MonoBehaviour
   [SerializeField] private CharacterController controller;
   [SerializeField] private Animator animator;
   [SerializeField] private HealthDetector healthDetector;
-  [SerializeField] private Health health;
-
   [SerializeField] private InputReader inputReader;
 
-  [Header("Settings")]
+  [Header("Health")]
+  [SerializeField] private Health health;
+  [SerializeField] private float maxHp;
+
+  [Header("Speed")]
   [SerializeField] private float initSpeed = 5;
   [SerializeField] private float currentSpeed = 5;
 
@@ -34,17 +36,9 @@ public class PlayerController : MonoBehaviour
     currentSpeed = initSpeed;
     transform.position = new Vector3(runningTrack.GetCurrentTrackXCoordinate(), transform.position.y, transform.position.z);
     attackTimer = new CountdownTimer(timerBeetweenAttacks);
-    health.Initialize(10, 10);
+    health.Initialize(maxHp);
 
-    stateMashine = new StateMashine();
-
-    var locomotionState = new LocomotionState(this, animator);
-    var attackState = new AttackState(this, animator, healthDetector.Health);
-
-    Any(locomotionState, new FuncPredicate(() => !healthDetector.Detected));
-    At(locomotionState, attackState, new FuncPredicate(() => healthDetector.Detected));
-
-    stateMashine.SetState(locomotionState);
+    SetupStateMashine();
   }
 
   private void At(IState from, IState to, IPredicate condition) => stateMashine.AddTransition(from, to, condition);
@@ -63,6 +57,19 @@ public class PlayerController : MonoBehaviour
     stateMashine.FixedUpdate();
   }
 
+  private void SetupStateMashine()
+  {
+    stateMashine = new StateMashine();
+
+    var locomotionState = new LocomotionState(this, animator);
+    var attackState = new AttackState(this, animator, healthDetector.Health);
+
+    Any(locomotionState, new FuncPredicate(() => !healthDetector.Detected));
+    At(locomotionState, attackState, new FuncPredicate(() => healthDetector.Detected));
+
+    stateMashine.SetState(locomotionState);
+  }
+  
   private void UpdadeteAnimator()
   {
     animator.SetFloat(Speed, currentSpeed);
@@ -100,7 +107,7 @@ public class PlayerController : MonoBehaviour
       return;
     }
     attackTimer.Start();
-    Debug.Log("Attack");
+    healthDetector.Health.TakeDamage(damage);
   }
 
   private void OnDestroy()
