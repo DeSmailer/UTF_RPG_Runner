@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public partial class Enemy : MonoBehaviour
+public partial class Enemy : Entity
 {
   [Header("Refarences")]
   [SerializeField] private Animator animator;
@@ -8,25 +8,29 @@ public partial class Enemy : MonoBehaviour
 
   [Header("Health")]
   [SerializeField] private Health health;
-  [SerializeField] private float maxHp;
 
   [Header("Attack")]
-  [SerializeField] private float timerBeetweenAttacks = 1;
-  [SerializeField] private float damage = 2f;
+  [SerializeField] private float timerBeetweenAttacks;
+  [SerializeField] private float damage;
+
+  [Header("Score")]
+  [SerializeField] private int score;
 
   private CountdownTimer attackTimer;
 
   private StateMashine stateMashine;
 
-  private void Awake()
+  public override void Initialize(EntityData data)
   {
-    Initialize();
-  }
+    if (data is EnemyData enemyData)
+    {
+      damage = enemyData.damage;
+      health.Initialize(enemyData.maxHealth);
+      score = enemyData.score;
+      timerBeetweenAttacks = enemyData.timerBeetweenAttacks;
+    }
 
-  public void Initialize()
-  {
     attackTimer = new CountdownTimer(timerBeetweenAttacks);
-    health.Initialize(maxHp);
 
     SetupStateMashine();
   }
@@ -66,5 +70,10 @@ public partial class Enemy : MonoBehaviour
     }
     attackTimer.Start();
     healthDetector.Health.TakeDamage(damage);
+  }
+
+  private void OnDeath()
+  {
+    ScoreManager.Instance.AddScore(score);
   }
 }

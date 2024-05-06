@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -25,9 +26,18 @@ public class Health : MonoBehaviour
     Debug.Log("currentHp " + CurrentHp);
   }
 
+  internal void RestoreHealth(float hp)
+  {
+    CurrentHp += hp;
+    if (CurrentHp > MaxHp)
+    {
+      CurrentHp = MaxHp;
+    }
+    OnChange?.Invoke();
+  }
+
   void Die()
   {
-    ScoreManager.Instance.AddScore(5);
     OnDied?.Invoke();
   }
 
@@ -35,4 +45,5 @@ public class Health : MonoBehaviour
   {
     return CurrentHp / MaxHp;
   }
+
 }

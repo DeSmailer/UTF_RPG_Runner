@@ -9,8 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44fce1e152639424580dae6506275531, type: 3}
-  m_Name: MedkitData 2
+  m_Script: {fileID: 11500000, guid: dbacfa34264100d48a4757ea82b1348f, type: 3}
+  m_Name: EnemyData 1
   m_EditorClassIdentifier: 
-  Prefab: {fileID: 5137279301989991989, guid: 23e7852ed530fc04d9fce7883a31c268, type: 3}
-  hp: 5
+  Prefab: {fileID: 7917150652794021727, guid: 4603da116b807c845a317bf7363f522a, type: 3}
+  damage: 2
+  maxHealth: 7
+  timerBeetweenAttacks: 1
+  score: 3

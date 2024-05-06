@@ -69,7 +69,7 @@ public class PlayerController : MonoBehaviour
 
     stateMashine.SetState(locomotionState);
   }
-  
+
   private void UpdadeteAnimator()
   {
     animator.SetFloat(Speed, currentSpeed);
@@ -98,6 +98,11 @@ public class PlayerController : MonoBehaviour
   {
     var adjustedMovement = Vector3.forward * currentSpeed * Time.deltaTime;
     controller.Move(adjustedMovement);
+  }
+
+  public void IncreaseDamage(float damage)
+  {
+    this.damage += damage;
   }
 
   public void Attack()

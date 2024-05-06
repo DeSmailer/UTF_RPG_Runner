@@ -12,7 +12,9 @@ public class EntityFactory<T> : IEntityFactory<T> where T : Entity
   public T Create(Transform spawnPoint)
   {
     EntityData entityData = data[Random.Range(0, data.Length)];
-    GameObject instance = GameObject.Instantiate(entityData.Prefab, spawnPoint.position, spawnPoint.rotation);
-    return instance.GetComponent<T>();
+    GameObject instanceGO = GameObject.Instantiate(entityData.Prefab, spawnPoint.position, spawnPoint.rotation);
+    T instanceT = instanceGO.GetComponent<T>();
+    instanceT.Initialize(entityData);
+    return instanceT;
   }
 }

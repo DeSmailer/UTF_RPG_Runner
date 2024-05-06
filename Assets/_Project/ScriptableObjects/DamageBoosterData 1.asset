@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44fce1e152639424580dae6506275531, type: 3}
-  m_Name: MedkitData 2
+  m_Script: {fileID: 11500000, guid: 670b96513224fba438f5d985331a0c79, type: 3}
+  m_Name: DamageBoosterData 1
   m_EditorClassIdentifier: 
-  Prefab: {fileID: 5137279301989991989, guid: 23e7852ed530fc04d9fce7883a31c268, type: 3}
-  hp: 5
+  Prefab: {fileID: 8524503751826492961, guid: 68e9589abbad5aa419c0d4302ee41a0f, type: 3}
+  damage: 1

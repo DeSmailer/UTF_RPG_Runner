@@ -1,14 +1,14 @@
-﻿using UnityEngine;
+using UnityEngine;
 
-public class Collectible : Entity
+public class DamageBooster : Entity
 {
-  private int score;
+  private int damage;
 
   public override void Initialize(EntityData data)
   {
-    if (data is CollectibleData collectibleDate)
+    if (data is DamageBoosterData damageBoosterData)
     {
-      score = collectibleDate.score;
+      damage = damageBoosterData.damage;
     }
   }
 
@@ -17,7 +17,7 @@ public class Collectible : Entity
     PlayerController player = other.GetComponent<PlayerController>();
     if (player != null)
     {
-      ScoreManager.Instance.AddScore(score);
+      player.IncreaseDamage(damage);
       Destroy(gameObject);
     }
   }
