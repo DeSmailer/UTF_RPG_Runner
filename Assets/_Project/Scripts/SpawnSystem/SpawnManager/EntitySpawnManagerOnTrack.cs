@@ -4,11 +4,11 @@ public class EntitySpawnManagerOnTrack : EntitySpawnerManager
 {
   [SerializeField] private EntityData[]  entityDatas   ;
   [SerializeField] private float spawnInterval = 1f;
+  [SerializeField] private int maxCount;
 
   private EntitySpawner<Entity> spawner;
   private CountdownTimer spawnTimer;
   private int counter;
-
 
   protected override void Awake()
   {
@@ -19,7 +19,7 @@ public class EntitySpawnManagerOnTrack : EntitySpawnerManager
     spawnTimer = new CountdownTimer(spawnInterval);
     spawnTimer.OntimerStop += () =>
     {
-      if (counter >= spawnPoints.Length)
+      if (counter >= spawnPoints.Length || counter >= maxCount)
       {
         spawnTimer.Stop();
         return;

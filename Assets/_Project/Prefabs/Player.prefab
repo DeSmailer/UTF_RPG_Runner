@@ -208,7 +208,7 @@ MonoBehaviour:
   currentSpeed: 5
   runningTrack: {fileID: 0}
   trackChangeDuration: 0.4
-  timerBeetweenAttacks: 1
+  timerBeetweenAttacks: 0.5
   damage: 5
 --- !u!143 &6846637536764622852
 CharacterController:

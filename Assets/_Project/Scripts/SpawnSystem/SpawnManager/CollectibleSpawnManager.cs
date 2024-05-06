@@ -9,7 +9,6 @@ public class CollectibleSpawnManager : EntitySpawnerManager
   private CountdownTimer spawnTimer;
   private int counter;
 
-
   protected override void Awake()
   {
     base.Awake();

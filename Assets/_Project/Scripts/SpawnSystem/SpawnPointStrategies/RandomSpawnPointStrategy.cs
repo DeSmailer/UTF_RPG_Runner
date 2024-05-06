@@ -26,3 +26,4 @@ public class RandomSpawnPointStrategy : ISpawnPointStrategy
     return result;
   }
 }
+ 
