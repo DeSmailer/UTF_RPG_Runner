@@ -3,7 +3,7 @@
 public abstract class EffectsCreator : MonoBehaviour, IEffectsCreator
 {
   [SerializeField] protected GameObject vfx;
-  [SerializeField] protected AudioSource audioSource;
+  [SerializeField] protected AudioClip audioClip;
   [SerializeField] protected float animationDuration = 1f;
 
   public virtual void Execute()
@@ -12,9 +12,9 @@ public abstract class EffectsCreator : MonoBehaviour, IEffectsCreator
     {
       Instantiate(vfx, transform.position, Quaternion.identity);
     }
-    if (audioSource != null)
+    if (audioClip != null)
     {
-      audioSource.Play();
+      AudioSource.PlayClipAtPoint(audioClip, transform.position);
     }
   }
 }

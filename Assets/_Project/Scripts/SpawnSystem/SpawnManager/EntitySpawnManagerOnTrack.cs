@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class EntitySpawnManagerOnTrack : EntitySpawnerManager
 {
-  [SerializeField] private EntityData[]  entityDatas   ;
+  [SerializeField] private EntityData[] entityDatas;
   [SerializeField] private float spawnInterval = 1f;
   [SerializeField] private int maxCount;
 
@@ -42,6 +42,7 @@ public class EntitySpawnManagerOnTrack : EntitySpawnerManager
 
   public override void Spawn()
   {
-    spawner.Spawn();
+    Entity entity = spawner.Spawn();
+    entity.transform.parent = transform;
   }
 }

@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vfx: {fileID: 3944589398275403606, guid: e219256ddadffe04384a751d8b2c06f8, type: 3}
-  audioSource: {fileID: 6915589842788513855, guid: cfa71d9db9cbff347a732e6ff6ca075f, type: 3}
+  audioClip: {fileID: 8300000, guid: 649ec35c05e28ad49945f34be0201845, type: 3}
   animationDuration: 1
 --- !u!1 &3130798028698131044
 GameObject:
@@ -175,7 +175,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vfx: {fileID: 3944589398275403606, guid: e219256ddadffe04384a751d8b2c06f8, type: 3}
-  audioSource: {fileID: 0}
+  audioClip: {fileID: 0}
   animationDuration: 1
 --- !u!1 &8798063091668310633
 GameObject:
