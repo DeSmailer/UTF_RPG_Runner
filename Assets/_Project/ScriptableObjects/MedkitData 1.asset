@@ -9,7 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b2bd682e68cf734dbf94ffc1a4b3b2d, type: 3}
-  m_Name: LevelParameters 1
+  m_Script: {fileID: 11500000, guid: 44fce1e152639424580dae6506275531, type: 3}
+  m_Name: MedkitData 1
   m_EditorClassIdentifier: 
-  trackWidth: 2
+  Prefab: {fileID: 5137279301989991989, guid: 0628d2b6f2d43ce40801fb79b8b563ce, type: 3}
+  hp: 2
