@@ -2595,17 +2595,9 @@ PrefabInstance:
       propertyPath: m_Name
       value: EntitySpawnManagerOnTrack
       objectReference: {fileID: 0}
-    - target: {fileID: 3640208959640343117, guid: 8286fb10043b90d4c839f6b74c84987d, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 7.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 3971694493901012548, guid: 8286fb10043b90d4c839f6b74c84987d, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 30.1
-      objectReference: {fileID: 0}
     - target: {fileID: 6230864368407427018, guid: 8286fb10043b90d4c839f6b74c84987d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.008374024
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6230864368407427018, guid: 8286fb10043b90d4c839f6b74c84987d, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2642,22 +2634,6 @@ PrefabInstance:
     - target: {fileID: 6230864368407427018, guid: 8286fb10043b90d4c839f6b74c84987d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6279397083551670331, guid: 8286fb10043b90d4c839f6b74c84987d, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 7.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 6360797784882725845, guid: 8286fb10043b90d4c839f6b74c84987d, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 7.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 8327470193293063872, guid: 8286fb10043b90d4c839f6b74c84987d, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 30.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8957910446301784798, guid: 8286fb10043b90d4c839f6b74c84987d, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 30.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
