@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Linq;
+using UnityEngine;
 
 public abstract class EntitySpawnerManager : MonoBehaviour
 {
@@ -10,7 +11,8 @@ public abstract class EntitySpawnerManager : MonoBehaviour
   protected enum SpawnPointStrategyType
   {
     Liner,
-    Random
+    Random,
+    Sequential
   }
 
   protected virtual void Awake()
@@ -22,6 +24,9 @@ public abstract class EntitySpawnerManager : MonoBehaviour
         break;
       case SpawnPointStrategyType.Random:
         spawnPointStrategy = new RandomSpawnPointStrategy(spawnPoints);
+        break;
+      case SpawnPointStrategyType.Sequential:
+        spawnPointStrategy = new SequentialSpawnPointStrategy(spawnPoints.First());
         break;
       default:
         break;
