@@ -47,6 +47,53 @@ MonoBehaviour:
   vfx: {fileID: 3944589398275403606, guid: e219256ddadffe04384a751d8b2c06f8, type: 3}
   audioSource: {fileID: 0}
   animationDuration: 1
+--- !u!1 &1051607986390074991
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6840754729361899474}
+  - component: {fileID: 8762212668136738141}
+  m_Layer: 0
+  m_Name: DestroyEffect
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6840754729361899474
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1051607986390074991}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.23, y: 1.21, z: 0.09}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7091313934858109586}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8762212668136738141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1051607986390074991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c81e593550f9ee24e8cf72754205af0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vfx: {fileID: 3944589398275403606, guid: e219256ddadffe04384a751d8b2c06f8, type: 3}
+  audioSource: {fileID: 6915589842788513855, guid: 42778855a3396aa4dbf8319a0f83a71e, type: 3}
+  animationDuration: 1
 --- !u!1 &6042290511224348712
 GameObject:
   m_ObjectHideFlags: 0
@@ -163,6 +210,7 @@ Transform:
   m_Children:
   - {fileID: 8556383322395105115}
   - {fileID: 2321125581670578306}
+  - {fileID: 6840754729361899474}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7184502478808333918

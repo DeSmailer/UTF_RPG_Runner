@@ -2107,7 +2107,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2043627251732401979, guid: 7e698a5a6ffa9d545b8d045074f66076, type: 3}
       propertyPath: maxHp
-      value: 1
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 2043627251732401979, guid: 7e698a5a6ffa9d545b8d045074f66076, type: 3}
       propertyPath: runningTrack

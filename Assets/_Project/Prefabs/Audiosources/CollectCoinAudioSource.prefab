@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3611495113950625209}
   - component: {fileID: 6915589842788513855}
   m_Layer: 0
-  m_Name: DeadAudioSource
+  m_Name: CollectCoinAudioSource
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -42,7 +42,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: fee9e7e20be10354ca6df7ae464a833f, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 649ec35c05e28ad49945f34be0201845, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
