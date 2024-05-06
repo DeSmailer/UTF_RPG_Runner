@@ -16,7 +16,10 @@ public partial class Enemy : Entity
   [Header("Score")]
   [SerializeField] private int score;
 
+  [SerializeField] private float timerBeetweenDestroy;
+
   private CountdownTimer attackTimer;
+  private CountdownTimer deadTimer;
 
   private StateMashine stateMashine;
 
@@ -28,9 +31,11 @@ public partial class Enemy : Entity
       health.Initialize(enemyData.maxHealth);
       score = enemyData.score;
       timerBeetweenAttacks = enemyData.timerBeetweenAttacks;
+      timerBeetweenDestroy = enemyData.timerBeetweenDestroy;
     }
 
     attackTimer = new CountdownTimer(timerBeetweenAttacks);
+    deadTimer = new CountdownTimer(timerBeetweenDestroy);
 
     SetupStateMashine();
   }
@@ -42,6 +47,7 @@ public partial class Enemy : Entity
   {
     stateMashine.Update();
     attackTimer.Tick(Time.deltaTime);
+    deadTimer.Tick(Time.deltaTime);
   }
 
   private void FixedUpdate()
@@ -55,9 +61,11 @@ public partial class Enemy : Entity
 
     var idleState = new EnemyIdleState(this, animator);
     var attackState = new EnemyAttackState(this, animator, healthDetector.Health);
+    var deadState = new EnemyDeadState(this, animator);
 
     Any(idleState, new FuncPredicate(() => !healthDetector.Detected));
     At(idleState, attackState, new FuncPredicate(() => healthDetector.Detected));
+    At(attackState, deadState, new FuncPredicate(() => health.IsDead));
 
     stateMashine.SetState(idleState);
   }
@@ -72,8 +80,13 @@ public partial class Enemy : Entity
     healthDetector.Health.TakeDamage(damage);
   }
 
-  private void OnDeath()
+  public void Dead()
   {
-    ScoreManager.Instance.AddScore(score);
+    deadTimer.Start();
+    deadTimer.OntimerStop += () =>
+    {
+      ScoreManager.Instance.AddScore(score);
+      Destroy(gameObject);
+    };
   }
 }

@@ -6,7 +6,6 @@ public class DestroyEffects : EffectsCreator
   private void OnDestroy()
   {
     Execute();
-
   }
 
   public override void Execute()

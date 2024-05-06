@@ -7,6 +7,7 @@ public abstract class BaseState : IState
 
   protected static readonly int LocomotionHash = Animator.StringToHash("Locomotion");
   protected static readonly int attackHash = Animator.StringToHash("Attack");
+  protected static readonly int dieHash = Animator.StringToHash("Die");
   protected const float crossFadeDuration = 0.1f;
 
   public BaseState(PlayerController player, Animator animator)

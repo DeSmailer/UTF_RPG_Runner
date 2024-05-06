@@ -27,6 +27,10 @@ public class PlayerController : MonoBehaviour
   [SerializeField] private float timerBeetweenAttacks = 1f;
   [SerializeField] private float damage = 5f;
 
+  [Header("Dead")]
+  [SerializeField] private float timerBeetweenDestroy = 3f;
+  private CountdownTimer deadTimer;
+
   private StateMashine stateMashine;
 
   private static readonly int Speed = Animator.StringToHash("Speed");
@@ -35,8 +39,9 @@ public class PlayerController : MonoBehaviour
   {
     currentSpeed = initSpeed;
     transform.position = new Vector3(runningTrack.GetCurrentTrackXCoordinate(), transform.position.y, transform.position.z);
-    attackTimer = new CountdownTimer(timerBeetweenAttacks);
     health.Initialize(maxHp);
+    attackTimer = new CountdownTimer(timerBeetweenAttacks);
+    deadTimer = new CountdownTimer(timerBeetweenDestroy);
 
     SetupStateMashine();
   }
@@ -48,6 +53,7 @@ public class PlayerController : MonoBehaviour
   {
     stateMashine.Update();
     attackTimer.Tick(Time.deltaTime);
+    deadTimer.Tick(Time.deltaTime);
 
     UpdadeteAnimator();
   }
@@ -63,9 +69,11 @@ public class PlayerController : MonoBehaviour
 
     var locomotionState = new LocomotionState(this, animator);
     var attackState = new AttackState(this, animator, healthDetector.Health);
+    var deadState = new DeadState(this, animator);
 
     Any(locomotionState, new FuncPredicate(() => !healthDetector.Detected));
     At(locomotionState, attackState, new FuncPredicate(() => healthDetector.Detected));
+    At(attackState, deadState, new FuncPredicate(() => health.IsDead));
 
     stateMashine.SetState(locomotionState);
   }
@@ -113,6 +121,15 @@ public class PlayerController : MonoBehaviour
     }
     attackTimer.Start();
     healthDetector.Health.TakeDamage(damage);
+  }
+
+  public void Dead()
+  {
+    deadTimer.Start();
+    deadTimer.OntimerStop += () =>
+    {
+      Debug.LogError("You Died");
+    };
   }
 
   private void OnDestroy()

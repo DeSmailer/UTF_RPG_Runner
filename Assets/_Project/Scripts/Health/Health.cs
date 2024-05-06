@@ -8,7 +8,9 @@ public class Health : MonoBehaviour
   public float CurrentHp { get; private set; }
 
   public UnityEvent OnChange;
-  public UnityEvent OnDied;
+  public UnityEvent OnDie;
+
+  public bool IsDead => CurrentHp <= 0;
 
   public void Initialize(float maxHp)
   {
@@ -38,7 +40,7 @@ public class Health : MonoBehaviour
 
   void Die()
   {
-    OnDied?.Invoke();
+    OnDie?.Invoke();
   }
 
   public float GetHpPercentage()

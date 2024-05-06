@@ -16,4 +16,5 @@ MonoBehaviour:
   damage: 2
   maxHealth: 7
   timerBeetweenAttacks: 1
+  timerBeetweenDestroy: 1.3
   score: 3
